@@ -3,7 +3,7 @@ const sinon = require('sinon');
 const sinonChai = require('sinon-chai');
 const { productsServices } = require('../../../src/services');
 const { productsController } = require('../../../src/controllers');
-const { products, errorMessage } = require('./mocks/productsController.mock');
+const { products } = require('./mocks/productsController.mock');
 
 const { expect } = chai;
 chai.use(sinonChai);
@@ -16,7 +16,7 @@ describe('testando a camada controller', () => {
     res.status = sinon.stub().returns(res);
     res.json = sinon.stub().returns();
     sinon.stub(productsServices, 'getAll')
-         .resolves([products]);
+         .resolves(products);
     
     await productsController.productsList(req, res);
 
@@ -33,7 +33,7 @@ describe('testando a camada controller', () => {
     res.status = sinon.stub().returns(res);
     res.json = sinon.stub().returns();
     sinon.stub(productsServices, 'findById')
-         .resolves([products[1]]);
+         .resolves(products[1]);
     
     await productsController.getById(req, res);
 

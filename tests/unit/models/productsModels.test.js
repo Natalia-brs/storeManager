@@ -14,7 +14,7 @@ describe('Teste na model-products', () => {
   });
 
   it('Trazendo através de um id', async () => {
-    sinon.stub(connection, 'execute').resolves([products[1]]);
+    sinon.stub(connection, 'execute').resolves([[products[1]]]);
 
     const data = await productModels.findById(1);
 

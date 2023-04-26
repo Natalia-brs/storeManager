@@ -7,7 +7,7 @@ const { products } = require('./mocks/productServices.mock');
 
 describe('Teste da camada services', () => {
   it('Traz a lista completa de produtos', async () => {
-    sinon.stub(productModels, 'getAll').resolves([products]);
+    sinon.stub(productModels, 'getAll').resolves(products);
 
     const data = await productsServices.getAll();
 
@@ -21,7 +21,7 @@ describe('Teste da camada services', () => {
   });
 
   it('caso id seja valido', async () => {
-    sinon.stub(productModels, 'findById').resolves([products[1]]);
+    sinon.stub(productModels, 'findById').resolves(products[1]);
 
     const data = await productsServices.findById(1);
 
