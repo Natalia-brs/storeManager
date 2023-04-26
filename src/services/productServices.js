@@ -15,7 +15,13 @@ const findById = async (id) => {
   return productId;
 };
 
+const put = async (product) => {
+  const newProduct = await productModels.put(product);
+  return newProduct;
+};
+
 module.exports = {
   getAll,
   findById,
+  put,
 };
