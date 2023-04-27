@@ -1,15 +1,12 @@
 const { salesModels } = require('../models');
 
 const postSales = async (sales) => {
-  const { insertd } = await salesModels.createSale();
-  const sale = sales.map((item) => salesModels.insert(item, insertd));
-  const promise = await Promise.all(sale);
-  
-  const result = {
-    id: insertd,
-    itemsSold: promise,
+  const id = await salesModels.createSale();
+    await Promise.all(sales.map((item) => salesModels.insert(item, id)));
+  return {
+    id,
+    itemsSold: sales,
   };
-  return result;
 };
 
 const getAllSales = async () => {

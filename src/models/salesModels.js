@@ -4,18 +4,16 @@ const connection = require('./connection');
 const createSale = async () => {
   // const date = new Date();
   const [{ insertId }] = await connection.execute(
-    'INSERT INTO StoreManager.sales (date) VALUES (default)',
-    [],
+    'INSERT INTO StoreManager.sales (date) VALUES (NOW())',
   );
-  return { insertId };
+  return insertId;
 };
 
 const insert = async ({ productId, quantity }, salesId) => {
-   await connection.execute(
-    'INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?)',
+     await connection.execute(
+    'INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?);',
     [salesId, productId, quantity],
   );
-  return { productId, quantity };
 };
 
 const getAllSales = async () => {
