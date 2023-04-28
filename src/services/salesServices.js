@@ -1,6 +1,7 @@
 const { salesModels } = require('../models');
 const { productModels } = require('../models');
 
+// ajuda da lari na 6
 const postSales = async (sales) => {
   const validateProductById = await productModels.getAll();
   const getById = validateProductById.map((item) => item.id);

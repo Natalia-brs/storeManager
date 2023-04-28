@@ -27,9 +27,12 @@ const update = async (name, id) => {
       message: 'Product not found',
     }; 
   }
-  const getName = await productModels.updateId(name, id);
+   await productModels.updateId(name, id);
 
-  return getName;
+  return {
+    id,
+    name,
+  };
 };
 
 module.exports = {
