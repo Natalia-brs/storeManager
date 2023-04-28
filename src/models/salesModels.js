@@ -2,14 +2,13 @@ const camelize = require('camelize');
 const connection = require('./connection');
 
 const createSale = async () => {
-  // const date = new Date();
   const [{ insertId }] = await connection.execute(
-    'INSERT INTO StoreManager.sales (date) VALUES (NOW())',
+    'INSERT INTO StoreManager.sales (date) VALUES (NOW());',
   );
   return insertId;
 };
 
-const insert = async (productId, quantity, salesId) => {
+const insert = async (salesId, productId, quantity) => {
      await connection.execute(
     'INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?);',
     [salesId, productId, quantity],
