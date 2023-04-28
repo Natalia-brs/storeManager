@@ -1,12 +1,17 @@
 const { salesModels } = require('../models');
 
 const postSales = async (sales) => {
-  const id = await salesModels.createSale();
+  try {
+    const id = await salesModels.createSale();
     await Promise.all(sales.map((item) => salesModels.insert(item, id)));
-  return {
-    id,
-    itemsSold: sales,
-  };
+    return {
+      id,
+      itemsSold: sales,
+    };
+  } catch (error) {
+    console.log(error);
+    throw new Error('Product not found');
+  }
 };
 
 const getAllSales = async () => {

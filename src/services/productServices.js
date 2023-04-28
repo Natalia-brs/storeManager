@@ -20,8 +20,21 @@ const put = async (product) => {
   return newProduct;
 };
 
+const update = async (name, id) => {
+  const getId = await productModels.findById(id);
+  if (!getId) {
+    return { 
+      message: 'Product not found',
+    }; 
+  }
+  const getName = await productModels.updateId(name, id);
+
+  return getName;
+};
+
 module.exports = {
   getAll,
   findById,
   put,
+  update,
 };
